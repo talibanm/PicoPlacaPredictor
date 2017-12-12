@@ -12,19 +12,25 @@ public class InputArgsValidator {
         this.timeValidator = timeValidator;
     }
 
-    public boolean validate(String[] args) throws Exception {
-        validateArgsNumber(args);
-        plateValidator.validate(args[0]);
-        if (args.length > 1) {
-            dateValidator.validate(args[1]);
-            timeValidator.validate(args[2]);
-        }
-        return false;
+    public void validate(String[] args) throws Exception {
+        validateNumberOfArgs(args);
+        validateArgs(args);
     }
 
-    public boolean validateArgsNumber(String[] args) throws Exception {
+    private void validateArgs(String[] args) throws Exception {
+        String plate = args[0];
+        plateValidator.validate(plate);
+        if (args.length > 1) {
+            String date = args[1];
+            String time = args[2];
+            dateValidator.validate(date);
+            timeValidator.validate(time);
+        }
+    }
+
+    public boolean validateNumberOfArgs(String[] args) throws Exception {
         if (args.length != 1 && args.length != 3) {
-            throw new PicoPlacaException("Invalid args number");
+            throw new PicoPlacaException("Invalid number of args. Should be plate or plate date time");
         }
         return true;
     }

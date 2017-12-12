@@ -17,7 +17,7 @@ public class InputArgsValidatorTest {
         String[] oneArg = new String[]{"AAA-111"};
         InputArgsValidator inputArgsValidator = new InputArgsValidator(null,null,null);
 
-        assertTrue("one arg", inputArgsValidator.validateArgsNumber(oneArg));
+        assertTrue("one arg", inputArgsValidator.validateNumberOfArgs(oneArg));
     }
 
     @Test
@@ -25,7 +25,7 @@ public class InputArgsValidatorTest {
         String[] threeArgs = new String[]{"AAA-111","2017-12-11","11:46 AM"};
         InputArgsValidator inputArgsValidator = new InputArgsValidator(null,null,null);
 
-        assertTrue("three args", inputArgsValidator.validateArgsNumber(threeArgs));
+        assertTrue("three args", inputArgsValidator.validateNumberOfArgs(threeArgs));
     }
 
     @Test(expected = PicoPlacaException.class)
@@ -33,7 +33,7 @@ public class InputArgsValidatorTest {
         String[] threeArgs = new String[]{"AAA-111","2017-12-11"};
         InputArgsValidator inputArgsValidator = new InputArgsValidator(null,null,null);
 
-        assertTrue("two args",!inputArgsValidator.validateArgsNumber(threeArgs));
+        assertTrue("two args",!inputArgsValidator.validateNumberOfArgs(threeArgs));
     }
 
     @Test(expected = PicoPlacaException.class)
@@ -41,7 +41,7 @@ public class InputArgsValidatorTest {
         String[] threeArgs = new String[]{};
         InputArgsValidator inputArgsValidator = new InputArgsValidator(null,null,null);
 
-        assertTrue("cero args",!inputArgsValidator.validateArgsNumber(threeArgs));
+        assertTrue("cero args",!inputArgsValidator.validateNumberOfArgs(threeArgs));
     }
 
     @Test

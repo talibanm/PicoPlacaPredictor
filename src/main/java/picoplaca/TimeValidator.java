@@ -4,11 +4,15 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class TimeValidator implements Validator {
+    private static String timePattern = "hh:mm a";
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timePattern);
     @Override
     public boolean validate(String time) {
-        String timePattern = "hh:mm a";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timePattern);
-        LocalTime.parse(time,formatter);
+        parse(time);
         return true;
+    }
+
+    public LocalTime parse(String time) {
+        return LocalTime.parse(time,formatter);
     }
 }
