@@ -32,9 +32,9 @@ public class PicoPlacaTest {
     }
 
     @Test
-    public void predictMorningPicoPlacaInitialLimit(){
+    public void predictMorningPicoPlaca(){
         LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(7,0);
+        LocalTime localTime = LocalTime.of(8,0);
         String plate = "PBA-1511";
 
         context.checking(new Expectations(){{
@@ -49,9 +49,9 @@ public class PicoPlacaTest {
     }
 
     @Test
-    public void predictMorningPicoPlacaFinalLimit(){
+    public void predictAfternoonPicoPlaca(){
         LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(9,30);
+        LocalTime localTime = LocalTime.of(17,0);
         String plate = "PBA-1511";
 
         context.checking(new Expectations(){{
@@ -66,43 +66,9 @@ public class PicoPlacaTest {
     }
 
     @Test
-    public void predictAfternoonPicoPlacaInitialLimit(){
+    public void predictNoMorningPicoPlaca(){
         LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(16,0);
-        String plate = "PBA-1511";
-
-        context.checking(new Expectations(){{
-            oneOf(calendar).isDay(localDate,1);
-            will(returnValue(true));
-            oneOf(schedule).isTime(localTime);
-            will(returnValue(true));
-        }});
-
-        PicoPlaca picoPlaca = new PicoPlaca(calendar,schedule);
-        assertEquals("pico-placa",true, picoPlaca.predict(plate,localDate,localTime));
-    }
-
-    @Test
-    public void predictAfternoonPicoPlacaFinalLimit(){
-        LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(19,30);
-        String plate = "PBA-1511";
-
-        context.checking(new Expectations(){{
-            oneOf(calendar).isDay(localDate,1);
-            will(returnValue(true));
-            oneOf(schedule).isTime(localTime);
-            will(returnValue(true));
-        }});
-
-        PicoPlaca picoPlaca = new PicoPlaca(calendar,schedule);
-        assertEquals("pico-placa",true, picoPlaca.predict(plate,localDate,localTime));
-    }
-
-    @Test
-    public void predictNoMorningPicoPlacaInitialLimit(){
-        LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(6,59);
+        LocalTime localTime = LocalTime.of(6,00);
         String plate = "PBA-1510";
 
         context.checking(new Expectations(){{
@@ -117,43 +83,9 @@ public class PicoPlacaTest {
     }
 
     @Test
-    public void predictNoMorningPicoPlacaFinalLimit(){
+    public void predictNoAfternoonPicoPlaca(){
         LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(9,31);
-        String plate = "PBA-1510";
-
-        context.checking(new Expectations(){{
-            oneOf(calendar).isDay(localDate,0);
-            will(returnValue(true));
-            oneOf(schedule).isTime(localTime);
-            will(returnValue(false));
-        }});
-
-        PicoPlaca picoPlaca = new PicoPlaca(calendar,schedule);
-        assertEquals("no pico-placa",false, picoPlaca.predict(plate,localDate,localTime));
-    }
-
-    @Test
-    public void predictNoAfternoonPicoPlacaInitialLimit(){
-        LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(15,59);
-        String plate = "PBA-1510";
-
-        context.checking(new Expectations(){{
-            oneOf(calendar).isDay(localDate,0);
-            will(returnValue(true));
-            oneOf(schedule).isTime(localTime);
-            will(returnValue(false));
-        }});
-
-        PicoPlaca picoPlaca = new PicoPlaca(calendar,schedule);
-        assertEquals("no pico-placa",false, picoPlaca.predict(plate,localDate,localTime));
-    }
-
-    @Test
-    public void predictNoAfternoonPicoPlacaFinalLimit(){
-        LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(19,31);
+        LocalTime localTime = LocalTime.of(15,00);
         String plate = "PBA-1510";
 
         context.checking(new Expectations(){{
