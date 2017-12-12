@@ -75,18 +75,23 @@ public class UtilsTest {
         schedule.add(new LocalTime[]{LocalTime.of(7,0),LocalTime.of(9,30)});
         schedule.add(new LocalTime[]{LocalTime.of(16,0),LocalTime.of(19,30)});
 
-        LocalTime localTime = LocalTime.of(16,1);
+        LocalTime localTime = LocalTime.of(16,55);
 
         Iterator<LocalTime[]> iterator = schedule.iterator();
 
         LocalTime[] morning = iterator.next();
-
-        assertTrue("pico y placa",!(localTime.isAfter(morning[0]) && localTime.isBefore(morning[1])));
+        assertTrue("morning",!(localTime.compareTo(morning[0]) >= 0 && localTime.compareTo(morning[1]) <= 0));
 
         LocalTime[] afternoon = iterator.next();
-        assertTrue("pico y placa",(localTime.isAfter(afternoon[0]) && localTime.isBefore(afternoon[1])));
+        assertTrue("afternoon",(localTime.compareTo(afternoon[0]) >= 0 && localTime.compareTo(afternoon[1]) <= 0));
 
+    }
 
+    @Test
+    public void obtainLastDigit(){
+        String plate = "AQA-1564";
+        int lastDigit = Integer.parseInt(String.valueOf(plate.charAt(plate.length() - 1)));
 
+        assertEquals("lastDigit",4,lastDigit);
     }
 }
