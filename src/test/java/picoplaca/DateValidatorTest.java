@@ -14,7 +14,7 @@ public class DateValidatorTest {
         Validator dateValidator = new DateValidator();
 
 
-        assertTrue("valid plate", dateValidator.validate(date));
+        assertTrue("valid date", dateValidator.validate(date));
     }
 
     @Test(expected = DateTimeParseException.class)

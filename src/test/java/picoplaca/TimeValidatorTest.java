@@ -13,7 +13,7 @@ public class TimeValidatorTest {
         String time = "02:00 PM";
         Validator timeValidator = new TimeValidator();
 
-        assertTrue("valid plate", timeValidator.validate(time));
+        assertTrue("valid time", timeValidator.validate(time));
     }
 
     @Test(expected = DateTimeParseException.class)

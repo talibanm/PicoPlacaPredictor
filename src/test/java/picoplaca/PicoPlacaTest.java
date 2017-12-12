@@ -21,7 +21,7 @@ public class PicoPlacaTest {
     @Test
     public void predictMorningPicoPlacaInitialLimit(){
         LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(7,00);
+        LocalTime localTime = LocalTime.of(7,0);
         String plate = "PBA-1511";
 
         PicoPlaca picoPlaca = new PicoPlaca();
@@ -41,7 +41,7 @@ public class PicoPlacaTest {
     @Test
     public void predictAfternoonPicoPlacaInitialLimit(){
         LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(16,00);
+        LocalTime localTime = LocalTime.of(16,0);
         String plate = "PBA-1511";
 
         PicoPlaca picoPlaca = new PicoPlaca();
