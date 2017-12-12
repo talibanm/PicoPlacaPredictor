@@ -11,6 +11,8 @@ public class Main {
     private static String plate;
     private static LocalDate localDate;
     private static LocalTime localTime;
+    private static Calendar calendar = new TwoDigitsPerDayCalendar();
+    private static Schedule schedule = new MorningAndAfternoonSchedule();
 
     public static void main(String[] args){
         validateArgs(args);
@@ -18,7 +20,7 @@ public class Main {
     }
 
     private static void validatePicoPlaca(String[] args) {
-        PicoPlaca picoPlaca = new PicoPlaca();
+        PicoPlaca picoPlaca = new PicoPlaca(calendar,schedule);
         setValues(args);
         if (picoPlaca.predict(plate, localDate, localTime)) {
             System.out.print("¡¡¡ TIENES PICO Y PLACA. NO CIRCULAR !!!");
