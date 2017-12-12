@@ -17,7 +17,7 @@ public class PicoPlacaTest {
     private final Schedule schedule = context.mock(Schedule.class);
 
     @Test
-    public void predictVacationPicoPlaca(){
+    public void predictNoVacationPicoPlaca(){
         LocalDate localDate = LocalDate.of(2017,12,9);
         LocalTime localTime = LocalTime.of(12,10);
         String plate = "PBA-1516";
@@ -66,26 +66,9 @@ public class PicoPlacaTest {
     }
 
     @Test
-    public void predictNoMorningPicoPlaca(){
+    public void predictNoPicoPlacaOutOfSchedule(){
         LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(6,00);
-        String plate = "PBA-1510";
-
-        context.checking(new Expectations(){{
-            oneOf(calendar).isDay(localDate,0);
-            will(returnValue(true));
-            oneOf(schedule).isTime(localTime);
-            will(returnValue(false));
-        }});
-
-        PicoPlaca picoPlaca = new PicoPlaca(calendar,schedule);
-        assertEquals("no pico-placa",false, picoPlaca.predict(plate,localDate,localTime));
-    }
-
-    @Test
-    public void predictNoAfternoonPicoPlaca(){
-        LocalDate localDate = LocalDate.of(2017,12,11);
-        LocalTime localTime = LocalTime.of(15,00);
+        LocalTime localTime = LocalTime.of(6,0);
         String plate = "PBA-1510";
 
         context.checking(new Expectations(){{
